@@ -4,7 +4,7 @@
 
 <p align="center">
     <br>
-    <img src="./llama3.jpg" width="800"/>
+    <img src="./llama3-MoE.webp" width="800"/>
     <br>
 </p>
 <!-- <p align="center">
