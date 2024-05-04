@@ -18,7 +18,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """PyTorch LLaMA model."""
-
 import math
 import warnings
 from typing import List, Optional, Tuple, Union
@@ -53,7 +52,7 @@ from transformers.utils import (
 
 ## Add for MoE model
 from transformers.modeling_outputs import MoeModelOutputWithPast,MoeCausalLMOutputWithPast
-from .configuration_llama import LlamaConfig
+from .configuration_llama_moe import LlamaConfig
 
 
 
@@ -795,10 +794,10 @@ class LlamaSparseMoeBlock(nn.Module):
 
 
         #3.25 改：需记录每一层的router分配情况
-        choices = [self.layer_idx]
-        for i in range(self.num_experts):
-            nums = (selected_experts == i).sum()#[batch,num]#注意这里直接统计的就是个数
-            choices.append(nums.item())
+        # choices = [self.layer_idx]
+        # for i in range(self.num_experts):
+        #     nums = (selected_experts == i).sum()#[batch,num]#注意这里直接统计的就是个数
+        #     choices.append(nums.item())
 
         # rank = torch.distributed.get_rank()#训练时开启
         # if rank==0:
@@ -923,7 +922,7 @@ class LlamaDecoderLayer(nn.Module):
         
         #Add for MoE
         if output_router_logits:
-            outputs
+            outputs+=(router_logits,)
 
         return outputs
 
@@ -1087,6 +1086,11 @@ class LlamaModel(LlamaPreTrainedModel):
         self.layers = nn.ModuleList(
             [LlamaDecoderLayer(config, layer_idx) for layer_idx in range(config.num_hidden_layers)]
         )
+
+
+        self._use_sdpa = config._attn_implementation == "sdpa"
+        self._use_flash_attention_2 = config._attn_implementation == "flash_attention_2"
+
         self.norm = LlamaRMSNorm(config.hidden_size, eps=config.rms_norm_eps)
         self.gradient_checkpointing = False
 
@@ -1273,15 +1277,16 @@ class LlamaModel(LlamaPreTrainedModel):
             )
 
         causal_mask = torch.full((sequence_length, target_length), fill_value=min_dtype, dtype=dtype, device=device)
+
         #试图修复torch.triu的错误
-        self.register_buffer("triu0",torch.ones(sequence_length, target_length).to("cuda").triu())
+        # self.register_buffer("triu0",torch.ones(sequence_length, target_length).to(device).triu())
         if sequence_length != 1:
             # causal_mask = causal_mask.to(torch.float32)#改
-            # causal_mask = torch.triu(causal_mask, diagonal=1)
-            # causal_mask = causal_mask.to('cuda', dtype=torch.bfloat16)#改
+            causal_mask = torch.triu(causal_mask, diagonal=1)
+            # causal_mask = causal_mask.to(device, dtype=torch.bfloat16)#改
 
             #self.register_buffer的修复方式
-            causal_mask=causal_mask*self.triu0
+            # causal_mask=causal_mask*self.triu0
         causal_mask *= torch.arange(target_length, device=device) > cache_position.reshape(-1, 1)
         causal_mask = causal_mask[None, None, :, :].expand(input_tensor.shape[0], 1, -1, -1)
         if attention_mask is not None:
@@ -1454,6 +1459,9 @@ class LlamaMoEForCausalLM(LlamaPreTrainedModel):
 
         if not return_dict:
             output = (logits,) + outputs[1:]
+            if output_router_logits:
+                output = (aux_loss,) + output
+            
             return (loss,) + output if loss is not None else output
 
         return MoeCausalLMOutputWithPast(
