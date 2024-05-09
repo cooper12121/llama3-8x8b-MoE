@@ -1,6 +1,6 @@
-#  Llama3-8×8b-MoE 
+h#  Llama3-8×8b-MoE 
   
-[**🇨🇳中文**](./README.md) | [**🌐English**](./README_EN.md) 
+[**🇨🇳中文**](./README_ZH.md) | [**🌐English**](./README.md) 
 
 <p align="center">
     <br>
