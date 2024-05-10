@@ -8,7 +8,7 @@
     <br>A
 </p>
 
-🖥️🖥️🖥️This project is based on the [llama3-8B-Instruct model](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Chat) released by Meta. It duplicates the MLP eight times, creates a randomly initialized router, and keeps the other parameter weights unchanged, constructing a hot-start MoE model. This approach greatly reduces the cost of training an MoE model from scratch, making it easy to quickly fine-tune and use in downstream tasks.
+🖥️🖥️🖥️This project is based on the [llama3-8B-Instruct model](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Chat) released by Meta. It duplicates the MLP 8 times as 8 experts, creates a randomly initialized router, add load balancing loss, each token will choose 2 experts during forward, and keeps the other parameter weights unchanged, constructing a warm-start MoE model. This approach greatly reduces the cost of training an MoE model from scratch, making it easy to quickly fine-tune and use in downstream tasks.
 
 #### Main Contents of This Project
 
