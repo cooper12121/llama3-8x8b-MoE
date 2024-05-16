@@ -22,7 +22,7 @@ This project is based on the [llama3-8B-Instruct model](https://huggingface.co/m
 ## News
 **🚀🚀🚀🚀 Continuously updating, please stay tuned**
 
-**[2024/05/06] 🚀 Update the experimental results for ```Experiment 1: Training only router parameters```. For details, please refer to [Llama3-8x8b-MoE Fine-tuning Records](#1-llama3-8x8b-moe-fine-tuning-records). Upload the fine-tuning script and proceed to the next phase of the experiment.
+**[2024/05/06] 🚀 Update the experimental results for ```Experiment 1: Training only router parameters```. For details, please refer to [Llama3-8x8b-MoE Fine-tuning Records](#1-llama3-8x8b-moe-fine-tuning-records). Upload the fine-tuning script and proceed to the next phase of the experiment.**
 
 **[2024/05/06] 🚀 ```Experiment 1: Training only the router parameters ```for the Llama3-8×8b-MoE-Instruct-router_randomboot version, details can be found in [Llama3-8x8b-MoE Fine-tuning Records](#1-llama3-8x8b-moe-fine-tuning-records)**
 
