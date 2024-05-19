@@ -115,9 +115,7 @@ This project is based on the [llama3-8B-Instruct model](https://huggingface.co/m
 - Based on my previous experience in building the Yi-8x6b-MoE-Instruct model, directly fine-tuning the model built with specific task data, using the Adgen (115k+1097) data as an example, at 0.1 and 0.2 epochs, router_warmboot compared to router_randomboot has obvious stability, mainly reflected in the following aspects: 
   
   1. At 0.1 epoch, router_warmboot can output complete sentences, while router_randomboot outputs a large amount of empty (padding) symbols.
-  2. At 0.1 epoch, the BLEU4 values of router_warmboot and
-
- router_randomboot are 6.96 and 0, respectively.
+  2. At 0.1 epoch, the BLEU4 values of router_warmboot and router_randomboot are 6.96 and 0, respectively.
   3. At 0.2 epoch, router_randomboot still has 197/1097 responses that are empty, while the rest of the responses have complete sentences. The BLEU4 values of router_warmboot and router_randomboot are 8.77 and 7.15, respectively. <br>
   
   It can be seen that router_warmboot has better training stability with a small amount of data. It is easy to understand that router_randomboot, due to random initialization, and the initial eight experts are the same, so the likelihood of selecting eight experts is almost the same, without preference. This makes the router randomly assigning tokens destroy the coherence of sentences and the logits obtained lose the semantic relationship between sentences, resulting in extremely poor output quality.  
