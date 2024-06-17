@@ -23,6 +23,8 @@
 - 🚀 开源llama3-8×8b-MoE-Base/Instruct基模型，该模型在[llama3-8B-Base/Instruct模型](https://huggingface.co/meta-llama/Meta-Llama-3-8B-Instruct)的基础上扩展为MoE架构。
 - 🚀 开源扩展脚本、权重转换脚本。
 - 🚀 针对搭建的MoE模型进行通用sft数据微调，与现有的MoE模型进行比较
+- 🚀 使用Yarn进行长上下文扩展
+- 🚀 基于RLHF、DPO、ORPO的强化学习对齐训练
 - 🚀 MoE模型训练经验总结
 
 ----
@@ -30,7 +32,8 @@
 
 
 ## 新闻
-**🚀🚀🚀🚀 持续更新中，请等待**
+**  🚀🚀🚀持续更新中，请等待  **
+**[2024/06/17] 🚀 使用[dolphin1M](https://huggingface.co/datasets/cognitivecomputations/dolphin)英文sft数据和[firefly1.1M](https://huggingface.co/datasets/YeungNLP/firefly-train-1.1M)中文sft数据混合后做finetune，结果已上传至[HF](https://huggingface.co/gao-NLP/Llama3-8x8b-MoE-Instruct/tree/main/Llama3-8x8b-MoE-Instruct-dolphin1M_firefly1.1M)仓库。 开始下一阶段的实验：长上下文扩展**
 
 **[2024/05/16] 🚀 更新```实验1:只训练router的参数```的实验结果，详情请参考[Llama3-8x8b-MoE微调记录](#1-llama3-8x8b-moe微调记录)。上传finetune脚本。进行下一阶段实验**
 
