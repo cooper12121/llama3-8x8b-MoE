@@ -33,6 +33,8 @@
 
 ## 新闻
 **  🚀🚀🚀持续更新中，请等待  **
+**[2024/07/01] 🚀 添加自定义模型对vllm的支持，见[modeling_llama_moe_vllm.py](./modeling_file/modeling_llama_moe_vllm.py), 使用说明见[modeling_llama_moe.md](./modeling_file/modeling_llama_moe.md)**
+
 **[2024/06/17] 🚀 使用[dolphin1M](https://huggingface.co/datasets/cognitivecomputations/dolphin)英文sft数据和[firefly1.1M](https://huggingface.co/datasets/YeungNLP/firefly-train-1.1M)中文sft数据混合后做finetune，结果已上传至[HF](https://huggingface.co/gao-NLP/Llama3-8x8b-MoE-Instruct/tree/main/Llama3-8x8b-MoE-Instruct-dolphin1M_firefly1.1M)仓库。 开始下一阶段的实验：长上下文扩展**
 
 **[2024/05/16] 🚀 更新```实验1:只训练router的参数```的实验结果，详情请参考[Llama3-8x8b-MoE微调记录](#1-llama3-8x8b-moe微调记录)。上传finetune脚本。进行下一阶段实验**
