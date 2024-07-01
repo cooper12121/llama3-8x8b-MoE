@@ -26,7 +26,7 @@ This project is based on the [llama3-8B-Instruct model](https://huggingface.co/m
 
 **[2024/07/01] 🚀 Add custom model support for vllm，see [modeling_llama_moe_vllm.py](./modeling_file/modeling_llama_moe_vllm.py), for using instruction,see [modeling_llama_moe.md](./modeling_file/modeling_llama_moe.md)**
 
-**[2024/06/17] 🚀 Finetune the model using a mix of [dolphin1M](https://huggingface.co/datasets/cognitivecomputations/dolphin) English sft data and [firefly1.1M](https://huggingface.co/datasets/YeungNLP/firefly-train-1.1M) Chinese sft data, upload the model to [HF](https://huggingface.co/gao-NLP/Llama3-8x8b-MoE-Instruct/tree/main/Llama3-8x8b-MoE-Instruct-dolphin1M_firefly1.1M). Proceed to the next stage of experimentation: long context extension.
+**[2024/06/17] 🚀 Finetune the model using a mix of [dolphin1M](https://huggingface.co/datasets/cognitivecomputations/dolphin) English sft data and [firefly1.1M](https://huggingface.co/datasets/YeungNLP/firefly-train-1.1M) Chinese sft data, upload the model to [HF](https://huggingface.co/gao-NLP/Llama3-8x8b-MoE-Instruct/tree/main/Llama3-8x8b-MoE-Instruct-dolphin1M_firefly1.1M). Proceed to the next stage of experimentation: long context extension.**
 
 **[2024/05/06] 🚀 Update the experimental results for ```Experiment 1: Training only router parameters```. For details, please refer to [Llama3-8x8b-MoE Fine-tuning Records](#1-llama3-8x8b-moe-fine-tuning-records). Upload the fine-tuning script and proceed to the next phase of the experiment.**
 
